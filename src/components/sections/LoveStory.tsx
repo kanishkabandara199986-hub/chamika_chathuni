@@ -50,7 +50,7 @@ export function LoveStory() {
           {weddingData.loveStory.map((milestone, index) => {
             const isEven = index % 2 === 0;
             return (
-              <div key={index} className="relative flex items-center md:justify-between w-full">
+              <div key={index} className={`relative flex items-center md:justify-between w-full ${isEven ? '' : 'md:flex-row-reverse'}`}>
                 
                 {/* Timeline Dot */}
                 <motion.div 
@@ -59,6 +59,7 @@ export function LoveStory() {
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.5 + index * 0.2, type: "spring" }}
+                  style={{ willChange: "transform, opacity" }}
                 />
 
                 {/* Content Box */}
@@ -68,6 +69,7 @@ export function LoveStory() {
                   whileInView={{ opacity: 1, x: 0, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.8, delay: 0.2 + index * 0.2 }}
+                  style={{ willChange: "transform, opacity" }}
                 >
                   <div className="bg-[var(--color-ivory)] p-6 rounded-sm shadow-md border border-[var(--color-gold)]/20 relative w-full group hover:border-[var(--color-gold)]/50 transition-colors">
                     {/* Small dot connecting to line on desktop */}
