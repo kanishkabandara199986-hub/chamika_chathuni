@@ -29,7 +29,7 @@ export function FloralDecorations() {
   );
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[5] overflow-hidden" aria-hidden="true">
+    <div className="fixed inset-0 pointer-events-none z-[5] overflow-hidden" aria-hidden="true" style={{ transform: 'translateZ(0)' }}>
       {/* Top Left */}
       <FloralCornerSVG className="absolute top-0 left-0 opacity-80" />
       

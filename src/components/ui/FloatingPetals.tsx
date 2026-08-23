@@ -9,7 +9,16 @@ export function FloatingPetals() {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const petals = containerRef.current.children;
+    const isMobile = window.innerWidth < 768;
+    const activePetalCount = isMobile ? Math.floor(PETAL_COUNT / 2) : PETAL_COUNT;
+    const petals = Array.from(containerRef.current.children).slice(0, activePetalCount);
+
+    // Hide the unused petals if on mobile
+    if (isMobile) {
+      for (let i = activePetalCount; i < containerRef.current.children.length; i++) {
+        (containerRef.current.children[i] as HTMLElement).style.display = 'none';
+      }
+    }
 
     // Set initial properties and create infinite falling animations
     for (let i = 0; i < petals.length; i++) {
@@ -27,6 +36,7 @@ export function FloatingPetals() {
         scale: scale,
         rotation: Math.random() * 360,
         opacity: 0.4 + Math.random() * 0.4,
+        force3D: true, // Hardware acceleration
       });
 
       // Animate falling down
@@ -36,6 +46,7 @@ export function FloatingPetals() {
         duration: duration,
         repeat: -1,
         delay: Math.random() * -duration, // Stagger starts
+        force3D: true,
       });
 
       // Add a swaying motion (horizontal)
@@ -46,6 +57,7 @@ export function FloatingPetals() {
         duration: 3 + Math.random() * 4,
         repeat: -1,
         yoyo: true,
+        force3D: true,
       });
     }
 
@@ -64,10 +76,11 @@ export function FloatingPetals() {
       ref={containerRef} 
       className="fixed inset-0 pointer-events-none z-[1] overflow-hidden"
       aria-hidden="true"
+      style={{ transform: 'translateZ(0)' }}
     >
       {Array.from({ length: PETAL_COUNT }).map((_, i) => (
-        <div key={i} className="absolute top-0 left-0">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div key={i} className="absolute top-0 left-0" style={{ willChange: 'transform' }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
             {/* Elegant teardrop petal shape */}
             <path 
               d="M12 0C12 0 20 5 20 12C20 19 12 24 12 24C12 24 4 19 4 12C4 5 12 0 12 0Z" 
