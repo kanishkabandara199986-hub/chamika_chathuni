@@ -37,24 +37,31 @@ export function MapSection() {
       </div>
 
       <motion.div 
-        className="max-w-4xl mx-auto rounded-sm overflow-hidden shadow-2xl border-2 border-[var(--color-gold)]/30 relative bg-[var(--color-ivory)] p-2"
+        className="max-w-4xl mx-auto rounded-sm overflow-hidden shadow-2xl border-2 border-[var(--color-gold)]/30 relative bg-[var(--color-ivory)] p-2 group cursor-pointer"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1, delay: 0.6 }}
       >
-        <div className="aspect-video w-full relative">
-          <iframe 
-            src="https://maps.google.com/maps?q=Grand+Glamora+Luxury+Banquet,+Ampara&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-            width="100%" 
-            height="100%" 
-            style={{ border: 0 }} 
-            allowFullScreen={false} 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-            className="absolute inset-0 grayscale contrast-125 sepia-[0.3] hue-rotate-[320deg] hover:grayscale-0 hover:sepia-0 transition-all duration-1000"
-          ></iframe>
-        </div>
+        <a 
+          href={weddingData.venue.mapLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block aspect-video w-full relative overflow-hidden"
+        >
+          <img 
+            src="/assets/images/hotel.png" 
+            alt={weddingData.venue.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-[var(--color-maroon)]/0 group-hover:bg-[var(--color-maroon)]/20 transition-colors duration-500 flex items-center justify-center">
+            <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-[var(--color-ivory)] text-[var(--color-maroon)] py-3 px-6 rounded-full font-traditional tracking-widest text-xs shadow-xl flex items-center gap-2">
+              <MapPin size={16} />
+              Open in Maps
+            </div>
+          </div>
+        </a>
       </motion.div>
 
       <motion.div 
