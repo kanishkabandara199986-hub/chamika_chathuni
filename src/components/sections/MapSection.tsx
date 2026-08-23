@@ -44,9 +44,8 @@ export function MapSection() {
         transition={{ duration: 1, delay: 0.6 }}
       >
         <div className="aspect-video w-full relative">
-          {/* Using a placeholder iframe since exact maps link isn't provided. This centers on Ampara */}
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126601.21731671231!2d81.60334816912388!3d7.291772099951664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae5a3c104dbfc89%3A0xc0c8ff0a9f5d3db8!2sAmpara!5e0!3m2!1sen!2slk!4v1714571932626!5m2!1sen!2slk" 
+            src="https://maps.google.com/maps?q=Grand+Glamora+Luxury+Banquet,+Ampara&t=&z=15&ie=UTF8&iwloc=&output=embed" 
             width="100%" 
             height="100%" 
             style={{ border: 0 }} 
