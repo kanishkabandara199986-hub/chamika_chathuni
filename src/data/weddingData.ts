@@ -24,7 +24,7 @@ export const weddingData = {
   venue: {
     name: "Grand Glamora Luxury Banquet",
     location: "Ampara, Sri Lanka",
-    mapLink: "https://maps.google.com/?q=Ampara,Sri+Lanka", // Placeholder
+    mapLink: "https://maps.app.goo.gl/kwYJYVW7ZvTmZwqq9",
   },
   loveStory: [
     {
