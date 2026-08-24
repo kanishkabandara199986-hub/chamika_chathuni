@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import { ChevronDown } from "lucide-react";
 import { weddingData } from "../../data/weddingData";
-import { Particles } from "../ui/Particles";
 
 export function Hero() {
   return (
