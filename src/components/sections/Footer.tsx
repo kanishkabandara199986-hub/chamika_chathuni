@@ -23,7 +23,7 @@ export function Footer() {
           {weddingData.couple.groom.name} & {weddingData.couple.bride.name}
         </h2>
         
-        <div className="font-body text-xs text-white/50 flex flex-col gap-1 uppercase tracking-widest">
+        <div className="font-body text-[9px] text-white/40 flex flex-col gap-1 uppercase tracking-wider">
           <p>A beautiful digital invitation by Wedora</p>
           <p className="opacity-50">Wedora by Bandara Studio</p>
         </div>
