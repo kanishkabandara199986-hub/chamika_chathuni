@@ -3,16 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Section } from "../ui/Section";
 import { Quote } from "lucide-react";
 
-const initialWishes = [
-  {
-    name: "Kamal & Family",
-    message: "Wishing you both a lifetime filled with love, happiness and unforgettable memories. May your journey together be beautiful.",
-  },
-  {
-    name: "Sanduni",
-    message: "Congratulations Chamika and Chathuni! So happy for you two. Have a wonderful wedding day!",
-  }
-];
+const initialWishes: { name: string; message: string }[] = [];
 
 export function GuestWishes() {
   const [wishes, setWishes] = useState(initialWishes);
@@ -115,7 +106,7 @@ export function GuestWishes() {
 
         {/* Wishes Display */}
         <motion.div
-          className="flex flex-col gap-6 h-[500px] overflow-y-auto pr-2 custom-scrollbar"
+          className="flex flex-col gap-6 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}

@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { Heart } from "lucide-react";
+
 export function FloralDecorations() {
   // A beautiful elegant floral corner SVG
   const FloralCornerSVG = ({ className }: { className?: string }) => (
@@ -24,8 +27,22 @@ export function FloralDecorations() {
         <circle cx="50" cy="60" r="3" fill="var(--color-maroon)" />
         <circle cx="80" cy="90" r="2" fill="var(--color-maroon)" />
         <circle cx="120" cy="120" r="2.5" fill="var(--color-maroon)" />
+        
+        {/* Subtle Heart integrated in vine */}
+        <path d="M35 85 C 35 80, 45 80, 45 85 C 45 90, 35 95, 35 95 C 35 95, 25 90, 25 85 C 25 80, 35 80, 35 85 Z" fill="var(--color-maroon)" fillOpacity="0.4" stroke="none" />
       </g>
     </svg>
+  );
+
+  const WeddingRings = ({ className }: { className?: string }) => (
+    <div className={`flex items-center justify-center opacity-60 ${className}`}>
+      <svg width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="20" r="14" stroke="var(--color-gold)" strokeWidth="2.5" fill="transparent" />
+        <circle cx="38" cy="20" r="14" stroke="var(--color-gold)" strokeWidth="2.5" fill="transparent" />
+        {/* Diamond on left ring */}
+        <path d="M22 2 L25 5 L22 8 L19 5 Z" fill="var(--color-gold)" stroke="var(--color-maroon)" strokeWidth="0.5" />
+      </svg>
+    </div>
   );
 
   return (
@@ -42,9 +59,38 @@ export function FloralDecorations() {
       {/* Bottom Right */}
       <FloralCornerSVG className="absolute bottom-0 right-0 opacity-80 scale-x-[-1] scale-y-[-1]" />
       
-      {/* Optional Top Center and Bottom Center border extensions if needed, but corners are elegant enough */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[60%] h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent opacity-50" />
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[60%] h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent opacity-50" />
+      {/* Top Center Rings */}
+      <WeddingRings className="absolute top-2 left-1/2 -translate-x-1/2" />
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[60%] h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent opacity-30 -z-10" />
+      
+      {/* Bottom Center Rings */}
+      <WeddingRings className="absolute bottom-2 left-1/2 -translate-x-1/2" />
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[60%] h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent opacity-30 -z-10" />
+
+      {/* Scattered Floating Global Hearts */}
+      {Array.from({ length: 6 }).map((_, i) => (
+        <motion.div
+          key={`global-heart-${i}`}
+          className="absolute text-[var(--color-maroon)] opacity-20"
+          style={{
+            left: `${10 + Math.random() * 80}%`,
+            top: `${10 + Math.random() * 80}%`,
+          }}
+          animate={{
+            y: [0, -60, 0],
+            opacity: [0.1, 0.3, 0.1],
+            scale: [0.8, 1.1, 0.8],
+          }}
+          transition={{
+            duration: Math.random() * 8 + 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: Math.random() * 5,
+          }}
+        >
+          <Heart size={Math.random() * 10 + 15} fill="currentColor" />
+        </motion.div>
+      ))}
     </div>
   );
 }

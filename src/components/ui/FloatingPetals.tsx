@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-const PETAL_COUNT = 30;
+const PETAL_COUNT = 60;
 
 export function FloatingPetals() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,15 +27,15 @@ export function FloatingPetals() {
       // Randomize initial positions
       const startX = Math.random() * window.innerWidth;
       const startY = Math.random() * -window.innerHeight; // Start above screen
-      const scale = 0.3 + Math.random() * 0.4; // Random scale
-      const duration = 10 + Math.random() * 15; // 10 to 25 seconds fall time
+      const scale = 0.3 + Math.random() * 0.5; // Random scale
+      const duration = 15 + Math.random() * 20; // 15 to 35 seconds fall time (slower)
       
       gsap.set(petal, {
         x: startX,
         y: startY,
         scale: scale,
         rotation: Math.random() * 360,
-        opacity: 0.4 + Math.random() * 0.4,
+        opacity: 0.3 + Math.random() * 0.5,
         force3D: true, // Hardware acceleration
       });
 
@@ -51,10 +51,10 @@ export function FloatingPetals() {
 
       // Add a swaying motion (horizontal)
       gsap.to(petal, {
-        x: `+=${50 + Math.random() * 100}`,
-        rotation: `+=${90 + Math.random() * 180}`,
+        x: `+=${50 + Math.random() * 150}`,
+        rotation: `+=${90 + Math.random() * 270}`,
         ease: "sine.inOut",
-        duration: 3 + Math.random() * 4,
+        duration: 4 + Math.random() * 5,
         repeat: -1,
         yoyo: true,
         force3D: true,
@@ -74,7 +74,7 @@ export function FloatingPetals() {
   return (
     <div 
       ref={containerRef} 
-      className="fixed inset-0 pointer-events-none z-[1] overflow-hidden"
+      className="fixed inset-0 pointer-events-none z-[50] overflow-hidden"
       aria-hidden="true"
       style={{ transform: 'translateZ(0)' }}
     >
@@ -84,8 +84,8 @@ export function FloatingPetals() {
             {/* Elegant teardrop petal shape */}
             <path 
               d="M12 0C12 0 20 5 20 12C20 19 12 24 12 24C12 24 4 19 4 12C4 5 12 0 12 0Z" 
-              fill="var(--color-maroon)" 
-              fillOpacity="0.4"
+              fill={i % 3 === 0 ? "var(--color-gold)" : "var(--color-maroon)"}
+              fillOpacity="0.5"
             />
           </svg>
         </div>

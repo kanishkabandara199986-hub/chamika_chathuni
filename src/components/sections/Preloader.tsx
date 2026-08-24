@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { Heart } from "lucide-react";
 import { weddingData } from "../../data/weddingData";
 
 interface PreloaderProps {
@@ -69,11 +70,11 @@ export function Preloader({ onComplete, isVisible }: PreloaderProps) {
             ))}
           </div>
 
-          {/* Subtle Particles */}
+          {/* Subtle Particles and Hearts */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50">
-            {Array.from({ length: 20 }).map((_, i) => (
+            {Array.from({ length: 15 }).map((_, i) => (
               <motion.div
-                key={i}
+                key={`dot-${i}`}
                 className="absolute rounded-full bg-[var(--color-gold)]"
                 style={{
                   width: Math.random() * 3 + 1,
@@ -91,6 +92,31 @@ export function Preloader({ onComplete, isVisible }: PreloaderProps) {
                   ease: "easeInOut",
                 }}
               />
+            ))}
+            
+            {Array.from({ length: 8 }).map((_, i) => (
+              <motion.div
+                key={`heart-${i}`}
+                className="absolute text-[var(--color-gold)]"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  y: [0, -80, 0],
+                  x: [0, Math.random() * 40 - 20, 0],
+                  opacity: [0, 0.6, 0],
+                  scale: [0.8, 1.2, 0.8],
+                }}
+                transition={{
+                  duration: Math.random() * 10 + 8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: Math.random() * 5,
+                }}
+              >
+                <Heart size={Math.random() * 15 + 10} fill="currentColor" fillOpacity="0.5" />
+              </motion.div>
             ))}
           </div>
 

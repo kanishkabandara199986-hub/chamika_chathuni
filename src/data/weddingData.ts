@@ -30,17 +30,17 @@ export const weddingData = {
     {
       title: "How It All Began",
       description: "The beginning of a beautiful journey.",
-      year: "2021",
+      year: "2015",
     },
     {
-      title: "Our First Chapter",
+      title: "Our 1st Chapter",
       description: "A memory that brought two hearts closer.",
-      year: "2022",
+      year: "2016",
     },
     {
       title: "Falling in Love",
       description: "Two lives slowly becoming one beautiful story.",
-      year: "2024",
+      year: "2017-2024",
     },
     {
       title: "The Proposal",
@@ -48,7 +48,7 @@ export const weddingData = {
       year: "2025",
     },
     {
-      title: "The Wedding Day",
+      title: "Wedding",
       description: "30 October 2026 — the beginning of forever.",
       year: "2026",
     },

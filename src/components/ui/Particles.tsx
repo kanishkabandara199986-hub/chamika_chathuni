@@ -1,55 +1,88 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  duration: number;
-  delay: number;
-}
-
-export function Particles({ count = 30 }: { count?: number }) {
-  const [particles, setParticles] = useState<Particle[]>([]);
+export function CustomParticles({ count = 80 }: { count?: number }) {
+  const [init, setInit] = useState(false);
 
   useEffect(() => {
-    const newParticles = Array.from({ length: count }).map((_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 4 + 1,
-      duration: Math.random() * 20 + 10,
-      delay: Math.random() * 5,
-    }));
-    setParticles(newParticles);
-  }, [count]);
+    initParticlesEngine(async (engine) => {
+      // This loads the slim version of tsparticles which includes everything needed for constellations
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+
+  if (!init) {
+    return null;
+  }
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full bg-yellow-600/30 blur-[1px]"
-          style={{
-            width: particle.size,
-            height: particle.size,
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-          }}
-          animate={{
-            y: [0, -100, 0],
-            x: [0, Math.random() * 50 - 25, 0],
-            opacity: [0, 0.5, 0],
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            delay: particle.delay,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+      <Particles
+        id="tsparticles"
+        className="w-full h-full"
+        options={{
+          fullScreen: { enable: false },
+          background: {
+            color: {
+              value: "transparent",
+            },
+          },
+          fpsLimit: 120,
+          interactivity: {
+            events: {
+              onClick: { enable: false },
+              onHover: { enable: false },
+              resize: { enable: true },
+            },
+          },
+          particles: {
+            color: {
+              value: "#d4af37", // var(--color-gold)
+            },
+            links: {
+              color: "#d4af37",
+              distance: 150,
+              enable: true,
+              opacity: 0.3,
+              width: 1,
+            },
+            move: {
+              direction: "none",
+              enable: true,
+              outModes: {
+                default: "bounce",
+              },
+              random: false,
+              speed: 0.8,
+              straight: false,
+            },
+            number: {
+              density: {
+                enable: true,
+                width: 800,
+                height: 800
+              },
+              value: count,
+            },
+            opacity: {
+              value: 0.5,
+            },
+            shape: {
+              type: "circle",
+            },
+            size: {
+              value: { min: 1, max: 3 },
+            },
+          },
+          detectRetina: true,
+        }}
+      />
     </div>
   );
 }
+
+// Default export if needed, or simply re-export as Particles to match old name
+export { CustomParticles as Particles };

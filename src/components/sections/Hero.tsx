@@ -9,7 +9,6 @@ export function Hero() {
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--color-champagne)]">
       {/* Background with texture and particles */}
       <div className="absolute inset-0 bg-pattern-kandyan opacity-20 pointer-events-none" />
-      <Particles count={40} />
       
       {/* Golden border frame */}
       <div className="absolute inset-4 md:inset-8 border-2 border-[var(--color-gold)]/30 pointer-events-none z-10 rounded-sm">
@@ -34,7 +33,7 @@ export function Hero() {
             className="font-traditional tracking-[0.3em] uppercase text-xs md:text-sm text-[var(--color-gold)] mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 5 }}
+            transition={{ duration: 1, delay: 0.5 }}
           >
             {weddingData.title}
           </motion.p>
@@ -44,7 +43,7 @@ export function Hero() {
               className="text-4xl sm:text-5xl md:text-7xl font-bold"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 5.3 }}
+              transition={{ duration: 1, delay: 0.8 }}
             >
               {weddingData.couple.groom.name}
             </motion.h1>
@@ -52,7 +51,7 @@ export function Hero() {
               className="text-3xl md:text-4xl font-traditional text-[var(--color-gold)] italic my-2"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 5.6 }}
+              transition={{ duration: 0.8, delay: 1.1 }}
             >
               &
             </motion.div>
@@ -60,7 +59,7 @@ export function Hero() {
               className="text-4xl sm:text-5xl md:text-7xl font-bold"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 5.9 }}
+              transition={{ duration: 1, delay: 1.4 }}
             >
               {weddingData.couple.bride.name}
             </motion.h1>
@@ -70,7 +69,7 @@ export function Hero() {
             className="font-body font-light text-sm md:text-base text-[var(--color-dark-brown)] mb-6 max-w-md mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 6.2 }}
+            transition={{ duration: 1, delay: 1.7 }}
           >
             {weddingData.invitationMessage.split('\n').map((line, i) => (
               <span key={i} className="block">{line}</span>
@@ -81,7 +80,7 @@ export function Hero() {
             className="pt-6 border-t border-[var(--color-gold)]/30 w-3/4 mx-auto"
             initial={{ opacity: 0, width: 0 }}
             animate={{ opacity: 1, width: "75%" }}
-            transition={{ duration: 1.5, delay: 6.5 }}
+            transition={{ duration: 1.5, delay: 2.0 }}
           >
             <p className="font-traditional uppercase tracking-widest text-xs md:text-sm font-semibold">
               {weddingData.date.fullDate} • {weddingData.venue.name} • {weddingData.venue.location.split(',')[0]}
@@ -94,7 +93,7 @@ export function Hero() {
           className="relative w-64 h-80 md:w-96 md:h-[30rem] overflow-hidden rounded-t-[100px] rounded-b-sm border-4 border-[var(--color-ivory)] shadow-2xl"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, delay: 4.5, ease: "easeOut" }} // Delay after preloader
+          transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }} // Delay after preloader
         >
           <motion.img 
             src="/assets/images/hero_couple.png" 
@@ -112,9 +111,9 @@ export function Hero() {
           className="mt-12 cursor-pointer z-30"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 7 }}
+          transition={{ duration: 1, delay: 2.5 }}
         >
-          <Link to="couple" smooth={true} duration={800} className="flex flex-col items-center group">
+          <Link to="story" smooth={true} duration={800} className="flex flex-col items-center group">
             <span className="font-traditional text-xs tracking-widest uppercase mb-2 text-[var(--color-dark-brown)] group-hover:text-[var(--color-maroon)] transition-colors">Explore Our Story</span>
             <motion.div
               animate={{ y: [0, 10, 0] }}

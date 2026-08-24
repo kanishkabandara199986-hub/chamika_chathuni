@@ -3,9 +3,11 @@ import { Preloader } from "./components/sections/Preloader";
 import { Hero } from "./components/sections/Hero";
 import { FloatingPetals } from "./components/ui/FloatingPetals";
 import { FloralDecorations } from "./components/ui/FloralDecorations";
+import { Particles } from "./components/ui/Particles";
+import { AudioPlayer } from "./components/ui/AudioPlayer";
 
 // Lazy load below-the-fold components for better performance
-const CoupleSection = lazy(() => import("./components/sections/CoupleSection").then(module => ({ default: module.CoupleSection })));
+
 const Countdown = lazy(() => import("./components/sections/Countdown").then(module => ({ default: module.Countdown })));
 const LoveStory = lazy(() => import("./components/sections/LoveStory").then(module => ({ default: module.LoveStory })));
 const WeddingEvents = lazy(() => import("./components/sections/WeddingEvents").then(module => ({ default: module.WeddingEvents })));
@@ -17,6 +19,7 @@ const Footer = lazy(() => import("./components/sections/Footer").then(module => 
 
 function App() {
   const [showPreloader, setShowPreloader] = useState(true);
+  const [playAudio, setPlayAudio] = useState(false);
 
   // Prevent scrolling while preloader is active
   useEffect(() => {
@@ -29,19 +32,26 @@ function App() {
     }
   }, [showPreloader]);
 
+  const handleEnterSite = () => {
+    setShowPreloader(false);
+    setPlayAudio(true);
+  };
+
   return (
-    <div className="bg-[var(--color-ivory)] min-h-screen text-[var(--color-dark-brown)] font-body selection:bg-[var(--color-gold)] selection:text-[var(--color-maroon)] relative">
-      <Preloader isVisible={showPreloader} onComplete={() => setShowPreloader(false)} />
+    <div className="bg-[var(--color-ivory)] bg-pattern-kandyan min-h-screen text-[var(--color-dark-brown)] font-body selection:bg-[var(--color-gold)] selection:text-[var(--color-maroon)] relative">
+      <Preloader isVisible={showPreloader} onComplete={handleEnterSite} />
       
       {!showPreloader && (
         <>
+          <AudioPlayer autoPlay={playAudio} />
           <FloralDecorations />
           <FloatingPetals />
+          <Particles count={80} />
           
           <main className="relative z-10">
             <Hero />
             <Suspense fallback={null}>
-              <CoupleSection />
+
               <Countdown />
               <LoveStory />
               <WeddingEvents />

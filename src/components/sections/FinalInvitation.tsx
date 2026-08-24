@@ -6,16 +6,7 @@ import { Section } from "../ui/Section";
 export function FinalInvitation() {
   return (
     <Section className="relative min-h-[80vh] flex flex-col items-center justify-center text-center !max-w-none px-0 overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="/assets/images/gallery_2.png" 
-          alt="Romantic Background" 
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-[var(--color-ivory)]/85 backdrop-blur-[2px]" />
-      </div>
+
 
       <div className="relative z-10 max-w-3xl mx-auto px-8 md:px-16 py-24 border-2 border-[var(--color-gold)] bg-[var(--color-ivory)] rounded-sm shadow-2xl relative overflow-hidden">
         {/* Subtle Kandyan Pattern inside the card */}
