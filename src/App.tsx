@@ -1,4 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from "react";
+import Lenis from "lenis";
 import { Preloader } from "./components/sections/Preloader";
 import { Hero } from "./components/sections/Hero";
 import { FloatingPetals } from "./components/ui/FloatingPetals";
@@ -20,6 +21,29 @@ const Footer = lazy(() => import("./components/sections/Footer").then(module => 
 function App() {
   const [showPreloader, setShowPreloader] = useState(true);
   const [playAudio, setPlayAudio] = useState(false);
+
+  // Initialize Lenis for smooth scrolling
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      touchMultiplier: 2,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   // Prevent scrolling while preloader is active
   useEffect(() => {
