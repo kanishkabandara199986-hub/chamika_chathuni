@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-const PETAL_COUNT = 60;
+const PETAL_COUNT = 30;
 
 export function FloatingPetals() {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -21,16 +21,32 @@ const Footer = lazy(() => import("./components/sections/Footer").then(module => 
 function App() {
   const [showPreloader, setShowPreloader] = useState(true);
   const [playAudio, setPlayAudio] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  // Initialize Lenis for smooth scrolling
   useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Initialize Lenis for smooth scrolling only on non-touch devices
+  useEffect(() => {
+    // Check if it's a touch device
+    const isTouchDevice = 
+      ('ontouchstart' in window) || 
+      (navigator.maxTouchPoints > 0) ||
+      (window.matchMedia("(pointer: coarse)").matches);
+
+    if (isTouchDevice) {
+      return; // Skip Lenis on mobile for better native scrolling and to prevent jump-to-top bugs
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      touchMultiplier: 2,
     });
 
     function raf(time: number) {
@@ -70,7 +86,7 @@ function App() {
           <AudioPlayer autoPlay={playAudio} />
           <FloralDecorations />
           <FloatingPetals />
-          <Particles count={80} />
+          <Particles count={isMobile ? 25 : 80} />
           
           <main className="relative z-10">
             <Hero />
