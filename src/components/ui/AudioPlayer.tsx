@@ -35,7 +35,7 @@ export function AudioPlayer({ autoPlay = false }: AudioPlayerProps) {
     <>
       <audio 
         ref={audioRef} 
-        src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_96dc3683f3.mp3" 
+        src="/assets/audio/background-music.mp3" 
         loop 
         preload="auto"
       />
