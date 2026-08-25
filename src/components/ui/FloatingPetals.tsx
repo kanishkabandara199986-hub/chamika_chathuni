@@ -36,7 +36,6 @@ export function FloatingPetals() {
         scale: scale,
         rotation: Math.random() * 360,
         opacity: 0.3 + Math.random() * 0.5,
-        force3D: true, // Hardware acceleration
       });
 
       // Animate falling down
@@ -46,7 +45,6 @@ export function FloatingPetals() {
         duration: duration,
         repeat: -1,
         delay: Math.random() * -duration, // Stagger starts
-        force3D: true,
       });
 
       // Add a swaying motion (horizontal)
@@ -57,7 +55,6 @@ export function FloatingPetals() {
         duration: 4 + Math.random() * 5,
         repeat: -1,
         yoyo: true,
-        force3D: true,
       });
     }
 
@@ -79,7 +76,7 @@ export function FloatingPetals() {
       style={{ transform: 'translateZ(0)' }}
     >
       {Array.from({ length: PETAL_COUNT }).map((_, i) => (
-        <div key={i} className="absolute top-0 left-0" style={{ willChange: 'transform' }}>
+        <div key={i} className="absolute top-0 left-0">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
             {/* Elegant teardrop petal shape */}
             <path 
