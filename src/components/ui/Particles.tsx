@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
-export function CustomParticles({ count = 80 }: { count?: number }) {
+export function CustomParticles({ count }: { count?: number }) {
   const [init, setInit] = useState(false);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const particleCount = count ?? (isMobile ? 15 : 80);
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -30,7 +32,7 @@ export function CustomParticles({ count = 80 }: { count?: number }) {
               value: "transparent",
             },
           },
-          fpsLimit: 120,
+          fpsLimit: 30,
           interactivity: {
             events: {
               onClick: { enable: false },
@@ -65,7 +67,7 @@ export function CustomParticles({ count = 80 }: { count?: number }) {
                 width: 800,
                 height: 800
               },
-              value: count,
+              value: particleCount,
             },
             opacity: {
               value: 0.5,
@@ -77,7 +79,7 @@ export function CustomParticles({ count = 80 }: { count?: number }) {
               value: { min: 1, max: 3 },
             },
           },
-          detectRetina: true,
+          detectRetina: false,
         }}
       />
     </div>

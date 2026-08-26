@@ -50,10 +50,13 @@ export function MapSection() {
           className="block aspect-video w-full relative overflow-hidden"
         >
           <img 
-            src="/assets/images/hotel.png" 
+            src="/assets/images/hotel.webp" 
             alt={weddingData.venue.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             loading="lazy"
+            decoding="async"
+            width="800"
+            height="450"
           />
           <div className="absolute inset-0 bg-[var(--color-maroon)]/0 group-hover:bg-[var(--color-maroon)]/20 transition-colors duration-500 flex items-center justify-center">
             <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-[var(--color-ivory)] text-[var(--color-maroon)] py-3 px-6 rounded-full font-traditional tracking-widest text-xs shadow-xl flex items-center gap-2">

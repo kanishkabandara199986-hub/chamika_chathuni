@@ -18,6 +18,12 @@ export function AudioPlayer({ autoPlay = false }: AudioPlayerProps) {
         console.log("Auto-play prevented by browser. User interaction needed.", err);
       });
     }
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
   }, [autoPlay]);
 
   const togglePlay = () => {
@@ -37,7 +43,7 @@ export function AudioPlayer({ autoPlay = false }: AudioPlayerProps) {
         ref={audioRef} 
         src="/assets/audio/background-music.mp3" 
         loop 
-        preload="auto"
+        preload="none"
       />
       
       <motion.button

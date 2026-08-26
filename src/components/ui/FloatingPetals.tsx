@@ -10,7 +10,7 @@ export function FloatingPetals() {
     if (!containerRef.current) return;
 
     const isMobile = window.innerWidth < 768;
-    const activePetalCount = isMobile ? Math.floor(PETAL_COUNT / 2) : PETAL_COUNT;
+    const activePetalCount = isMobile ? 10 : PETAL_COUNT;
     const petals = Array.from(containerRef.current.children).slice(0, activePetalCount);
 
     // Hide the unused petals if on mobile
@@ -64,8 +64,21 @@ export function FloatingPetals() {
       // For now, infinite loop handles most resizing gracefully
     };
 
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        gsap.globalTimeline.pause();
+      } else {
+        gsap.globalTimeline.play();
+      }
+    };
+
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   return (
@@ -73,7 +86,6 @@ export function FloatingPetals() {
       ref={containerRef} 
       className="fixed inset-0 pointer-events-none z-[50] overflow-hidden"
       aria-hidden="true"
-      style={{ transform: 'translateZ(0)' }}
     >
       {Array.from({ length: PETAL_COUNT }).map((_, i) => (
         <div key={i} className="absolute top-0 left-0">

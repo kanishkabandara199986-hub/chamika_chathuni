@@ -4,13 +4,13 @@ import { X, ZoomIn } from "lucide-react";
 import { Section } from "../ui/Section";
 
 const images = [
-  { src: "/assets/images/hero_couple.png", alt: "Couple Portrait", className: "col-span-12 md:col-span-8 row-span-2" },
-  { src: "/assets/images/gallery_1.png", alt: "Close up", className: "col-span-6 md:col-span-4 row-span-1" },
-  { src: "/assets/images/gallery_2.png", alt: "Pre-wedding", className: "col-span-6 md:col-span-4 row-span-1" },
+  { src: "/assets/images/hero_couple.webp", alt: "Couple Portrait", className: "col-span-12 md:col-span-8 row-span-2" },
+  { src: "/assets/images/couple_art.webp", alt: "Close up", className: "col-span-6 md:col-span-4 row-span-1" },
+  { src: "/assets/images/og_image.webp", alt: "Pre-wedding", className: "col-span-6 md:col-span-4 row-span-1" },
   // Duplicate images for masonry effect demonstration since we only generated 3
-  { src: "/assets/images/gallery_1.png", alt: "Close up 2", className: "col-span-6 md:col-span-4 row-span-1 md:col-start-9" },
-  { src: "/assets/images/gallery_2.png", alt: "Pre-wedding 2", className: "col-span-6 md:col-span-4 row-span-1 md:col-start-5" },
-  { src: "/assets/images/hero_couple.png", alt: "Couple Portrait 2", className: "col-span-12 md:col-span-4 row-span-2" },
+  { src: "/assets/images/couple_art.webp", alt: "Close up 2", className: "col-span-6 md:col-span-4 row-span-1 md:col-start-9" },
+  { src: "/assets/images/hotel.webp", alt: "Pre-wedding 2", className: "col-span-6 md:col-span-4 row-span-1 md:col-start-5" },
+  { src: "/assets/images/hero_couple.webp", alt: "Couple Portrait 2", className: "col-span-12 md:col-span-4 row-span-2" },
 ];
 
 export function Gallery() {
@@ -57,6 +57,10 @@ export function Gallery() {
               src={img.src} 
               alt={img.alt} 
               className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700 ease-out"
+              loading="lazy"
+              decoding="async"
+              width="600"
+              height="600"
             />
           </motion.div>
         ))}

@@ -59,7 +59,7 @@ export function GuestWishes() {
         </motion.p>
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
+      <div className={`mx-auto grid grid-cols-1 gap-12 relative z-10 ${wishes.length > 0 ? 'max-w-6xl lg:grid-cols-2' : 'max-w-xl'}`}>
         
         {/* Form */}
         <motion.div
@@ -105,7 +105,8 @@ export function GuestWishes() {
         </motion.div>
 
         {/* Wishes Display */}
-        <motion.div
+        {wishes.length > 0 && (
+          <motion.div
           className="flex flex-col gap-6 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -131,6 +132,7 @@ export function GuestWishes() {
             ))}
           </AnimatePresence>
         </motion.div>
+        )}
 
       </div>
     </Section>

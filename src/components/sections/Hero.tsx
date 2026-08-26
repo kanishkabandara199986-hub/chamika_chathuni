@@ -95,9 +95,13 @@ export function Hero() {
           transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }} // Delay after preloader
         >
           <motion.img 
-            src="/assets/images/hero_couple.png" 
+            src="/assets/images/hero_couple.webp" 
             alt="Chamika and Chathuni"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="500"
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
             transition={{ duration: 10, ease: "linear", repeat: Infinity, repeatType: "reverse" }}

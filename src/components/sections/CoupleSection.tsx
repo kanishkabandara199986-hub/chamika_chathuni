@@ -42,10 +42,13 @@ export function CoupleSection() {
             <div className="absolute inset-0 bg-[var(--color-maroon)]/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
              {/* Using gallery_1 for individual profiles for now as placeholders, ideally we'd have separate ones */}
             <img 
-              src="/assets/images/gallery_1.png" 
+              src="/assets/images/couple_art.webp" 
               alt={weddingData.couple.groom.name}
               className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
               loading="lazy"
+              decoding="async"
+              width="300"
+              height="400"
             />
           </div>
           <p className="font-traditional text-xs tracking-widest text-[var(--color-gold)] mb-2 uppercase">The Groom</p>
@@ -85,10 +88,13 @@ export function CoupleSection() {
              <div className="absolute inset-0 bg-[var(--color-maroon)]/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
              {/* Using gallery_1 for individual profiles for now as placeholders */}
             <img 
-              src="/assets/images/gallery_1.png" 
+              src="/assets/images/couple_art.webp" 
               alt={weddingData.couple.bride.name}
               className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
               loading="lazy"
+              decoding="async"
+              width="300"
+              height="400"
             />
           </div>
           <p className="font-traditional text-xs tracking-widest text-[var(--color-gold)] mb-2 uppercase">The Bride</p>
