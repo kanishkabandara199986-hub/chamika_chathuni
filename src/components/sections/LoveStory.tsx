@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { weddingData } from "../../data/weddingData";
 import { Section } from "../ui/Section";
+import { Heart, Sparkles, Star } from "lucide-react";
+
+const icons = [Heart, Sparkles, Star];
 
 export function LoveStory() {
   return (
@@ -49,6 +52,7 @@ export function LoveStory() {
         <div className="flex flex-col gap-12 md:gap-24">
           {weddingData.loveStory.map((milestone, index) => {
             const isEven = index % 2 === 0;
+            const Icon = icons[index % icons.length];
             return (
               <div key={index} className={`relative flex items-center md:justify-between w-full ${isEven ? '' : 'md:flex-row-reverse'}`}>
                 
@@ -69,13 +73,20 @@ export function LoveStory() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.8, delay: 0.2 + index * 0.2 }}
                 >
-                  <div className="bg-[var(--color-ivory)] p-6 rounded-sm shadow-md border border-[var(--color-gold)]/20 relative w-full group hover:border-[var(--color-gold)]/50 transition-colors">
+                  <div className="bg-[var(--color-ivory)] p-6 rounded-sm shadow-md border border-[var(--color-gold)]/20 relative w-full group hover:border-[var(--color-gold)]/50 transition-colors overflow-hidden">
                     {/* Small dot connecting to line on desktop */}
                     <div className={`hidden md:block absolute top-1/2 w-8 h-px bg-[var(--color-gold)]/50 -translate-y-1/2 ${isEven ? '-right-8' : '-left-8'}`} />
                     
-                    <span className="font-traditional text-xl text-[var(--color-gold)] mb-2 block">{milestone.year}</span>
-                    <h3 className="font-heading text-2xl font-bold text-[var(--color-maroon)] mb-2">{milestone.title}</h3>
-                    <p className="font-body text-sm text-[var(--color-dark-brown)] leading-relaxed">{milestone.description}</p>
+                    {/* Romantic faded icon watermark */}
+                    <div className={`absolute top-1/2 -translate-y-1/2 opacity-[0.05] pointer-events-none transition-opacity duration-700 group-hover:opacity-10 text-[var(--color-maroon)] ${isEven ? 'right-6 md:left-6 md:right-auto' : 'right-6'}`}>
+                      <Icon size={80} strokeWidth={1} />
+                    </div>
+
+                    <div className="relative z-10">
+                      <span className="font-traditional text-xl text-[var(--color-gold)] mb-2 block">{milestone.year}</span>
+                      <h3 className="font-heading text-2xl font-bold text-[var(--color-maroon)] mb-2">{milestone.title}</h3>
+                      <p className="font-body text-sm text-[var(--color-dark-brown)] leading-relaxed">{milestone.description}</p>
+                    </div>
                   </div>
                 </motion.div>
 
